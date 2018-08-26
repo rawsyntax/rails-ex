@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing comments by <%= h @commenter %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Commenter</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= h comment.commenter %></td>
+        <td><%= h comment.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back to articles', articles_path %>

@@ -14,7 +14,7 @@
   <% next if comment.errors.present? %>
   <p>
     <strong>Commenter:</strong>
-    <%= comment.commenter %>
+    <%= link_to comment.commenter, comments_path(commenter: comment.commenter) %>
   </p>
   <p>
     <strong>Comment:</strong>

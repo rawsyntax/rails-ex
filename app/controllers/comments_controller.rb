@@ -7,7 +7,13 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @commenter = params[:commenter]
+    @comments =
+      if @commenter
+        Comment.where(commenter: @commenter).all
+      else
+        Comment.all
+      end
   end
 
   # GET /comments/1
