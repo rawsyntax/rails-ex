@@ -11,6 +11,7 @@
 </p>
 <h2>Add a comment:</h2>
 <% @article.comments.each do |comment| %>
+  <% next if comment.errors.present? %>
   <p>
     <strong>Commenter:</strong>
     <%= comment.commenter %>
@@ -20,7 +21,19 @@
     <%= comment.body %>
   </p>
 <% end %>
+
 <%= form_for([@article, @article.comments.build]) do |f| %>
+  <% if @comment&.errors&.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <p>
     <%= f.label :commenter %><br>
     <%= f.text_field :commenter %>
